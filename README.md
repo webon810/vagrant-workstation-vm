@@ -1,3 +1,3 @@
 # vagrant-workstation
-# mysql - root/password
-# vagrant - vagrant/vagrant01
+ mysql - root/password
+ vagrant - vagrant/vagrant01
