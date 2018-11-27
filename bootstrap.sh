@@ -12,16 +12,21 @@ xfce4-goodies xubuntu-wallpapers gksu cifs-utils xfce4-whiskermenu-plugin firefo
 xarchiver filezilla synaptic curl vim wget
 
 echo 'Install VB addon and x11 display'
-sudo apt-get -y --force-yes --no-install-recommends install virtualbox-guest-utils virtualbox-guest-x11 virtualbox-guest-dkms
+sudo apt-get -y --force-yes --no-install-recommends install virtualbox-guest-utils virtualbox-guest-dkms
+
+#Installing Guest Additions
+sudo apt-get remove libcheese-gtk23
+sudo apt-get install xserver-xorg-core
+sudo apt-get install -f virtualbox-guest-x11
 
 echo 'Set Los_Angeles timezone...'
 echo "------------------------"
 echo "America/Los_Angeles" | sudo tee /etc/timezone
 sudo dpkg-reconfigure --frontend noninteractive tzdata
 
-echo 'Set English keyboard layout...'
-echo "------------------------"
-sudo sed -i 's/XKBLAYOUT="us"/g' /etc/default/keyboard
+#echo 'Set English keyboard layout...'
+#echo "------------------------"
+#sudo sed -i 's/XKBLAYOUT="us"/g' /etc/default/keyboard
 
 echo 'Install Chrome...'
 echo "------------------------"
@@ -32,25 +37,20 @@ rm /tmp/google*chrome*.deb
 ###google-chrome - if chrome not able to launch
 #sudo apt-get install --reinstall libnss3
 
-echo 'Install JDK 8 in /usr/lib/jvm/java-8-oracle...'
+echo 'Install Openjdk-8 from a PPA repository'
 echo "------------------------"
-sudo add-apt-repository ppa:webupd8team/java -y
-sudo apt-get update -y
-sudo echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-sudo echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-sudo apt-get install -y oracle-java8-installer -y
-sudo apt-get install oracle-java8-set-default -y
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-export PATH=$JAVA_HOME/bin:$PATH
-
-# echo 'Install JDK 8 in /usr/lib/jvm/java-8-oracle...'
-# sudo apt-get install -y oracle-java8-installer
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt-get update
+sudo apt-get install openjdk-8-jdk
+#formore than one Java version - use this command to switch versions
+#sudo update-alternatives --config java
 
 echo 'Create Development directory...'
 echo "------------------------"
 mkdir /home/vagrant/Development
 mkdir /home/vagrant/Development/git
 sudo chmod 777 -R /home/vagrant/Development/
+
 
 echo 'Install Spring Tool Suite based on Eclipse 4.6...'
 echo "------------------------"
