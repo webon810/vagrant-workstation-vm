@@ -67,7 +67,9 @@ tar xzf /tmp/spring-tool-suite-*-linux-gtk*.tar.gz -C /home/vagrant/Development/
 
 echo 'Install Tomcat 8.0.35...'
 echo "------------------------"
-wget http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz -P /tmp
+#wget http://archive.apache.org/dist/tomcat/tomcat-8/v8.0.35/bin/apache-tomcat-8.0.35.tar.gz -P /tmp
+wget http://archive.apache.org/dist/tomcat/tomcat-9/v9.0.8/bin/apache-tomcat-9.0.8.tar.gz -P /tmp
+
 tar xzf /tmp/apache-tomcat*.tar.gz -C /home/vagrant/Development/
 rm /tmp/apache-tomcat*.tar.gz
 
