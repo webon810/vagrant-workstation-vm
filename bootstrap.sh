@@ -15,9 +15,11 @@ echo 'Install VB addon and x11 display'
 sudo apt-get -y --force-yes --no-install-recommends install virtualbox-guest-utils virtualbox-guest-dkms
 
 #Installing Guest Additions
+#may has issue for login screen not work -07/04/19 
 sudo apt-get remove libcheese-gtk23
 sudo apt-get install xserver-xorg-core
 sudo apt-get install -f virtualbox-guest-x11
+//----
 
 echo 'Set Los_Angeles timezone...'
 echo "------------------------"
